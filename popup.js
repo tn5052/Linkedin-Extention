@@ -19,6 +19,7 @@ The LinkedIn post text is:
 
 \${imageContext}
 
+
 Instructions:
 1.  First, choose the *single most appropriate* reaction for this post from the following list: [Like, Celebrate, Support, Love, Insightful, Funny]. Consider the post's tone, content and professional context.
 2.  Second, generate a short (2-3 sentences), relevant, engaging, and professional comment for this specific post.
