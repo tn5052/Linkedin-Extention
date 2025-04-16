@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Commenter - Activity Stats</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            min-width: 800px;
+            max-width: 1000px;
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        
+        .stat-card {
+            background-color: #f0f0f0;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #555;
+        }
+        
+        .activity-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .activity-table th, .activity-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .activity-table th {
+            background-color: #f5f5f5;
+            position: sticky;
+            top: 0;
+        }
+        
+        .activity-table tbody tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .badge-comment { background-color: #2E7D32; }
+        .badge-reaction { background-color: #1976D2; }
+        .badge-visit { background-color: #9E9E9E; }
+        .badge-skip { background-color: #F57C00; }
+        
+        .date-column {
+            white-space: nowrap;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+        
+        .no-data {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>LinkedIn Commenter - Activity Stats</h1>
+            <div>
+                <button id="refreshStats" class="action-button">Refresh</button>
+                <button id="clearHistory" class="action-button secondary">Clear History</button>
+                <button id="backToPopup" class="action-button">Back to Main</button>
+            </div>
+        </div>
+        
+        <div class="summary-stats" id="summaryStats">
+            <div class="stat-card">
+                <div class="stat-number" id="totalComments">--</div>
+                <div class="stat-label">Total Comments</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="totalReactions">--</div>
+                <div class="stat-label">Total Reactions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="uniqueProfiles">--</div>
+                <div class="stat-label">Unique Profiles</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="last30Days">--</div>
+                <div class="stat-label">Last 30 Day Activity</div>
+            </div>
+        </div>
+        
+        <div>
+            <h2>Recent Activity</h2>
+            <div id="activityTableContainer">
+                <div class="loading">Loading activity data...</div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="stats.js"></script>
+</body>
+</html>

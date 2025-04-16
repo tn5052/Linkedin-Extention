@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>LinkedIn AI Commenter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>LinkedIn AI Commenter</h1>
+        
+        <!-- Tab Navigation - Removed Prompts tab -->
+        <div class="tab-container">
+            <div class="tab-nav">
+                <button class="tab-button active" data-tab="settings">Settings</button>
+                <button class="tab-button" data-tab="logs">Activity</button>
+            </div>
+            
+            <!-- Settings Tab -->
+            <div class="tab-content active" id="settings-tab">
+                <div class="settings-container">
+                    <h2>API Keys</h2>
+                    <div class="form-group">
+                        <label for="apiKey">Gemini API Key:</label>
+                        <input type="password" id="apiKey" placeholder="Enter your Gemini API Key">
+                    </div>
+                    <div class="form-group">
+                        <label for="mistralApiKey">Mistral API Key:</label>
+                        <input type="password" id="mistralApiKey" placeholder="Enter your Mistral API Key">
+                    </div>
+                    
+                    <h2>Target Profiles</h2>
+                    <div class="form-group">
+                        <label for="targetProfiles">Profile URLs (one per line):</label>
+                        <textarea id="targetProfiles" placeholder="https://www.linkedin.com/in/username/"></textarea>
+                    </div>
+                    
+                    <div class="form-group business-context-notice">
+                        <p>Business context and prompt customization is available in the <strong>Prompts Manager</strong>.</p>
+                    </div>
+                    
+                    <button id="saveSettings" class="action-button">Save Settings</button>
+                </div>
+            </div>
+            
+            <!-- Remove the Prompts Tab section entirely -->
+            
+            <!-- Logs Tab -->
+            <div class="tab-content" id="logs-tab">
+                <div class="status-container">
+                    <div class="status-header">
+                        <h3>Current Status: <span id="status">Idle</span></h3>
+                    </div>
+                    <div id="statistics" class="statistics-container">
+                        <!-- Statistics will be populated here -->
+                    </div>
+                </div>
+                
+                <div class="logs-container">
+                    <h3>Recent Activity <span id="log-count">(0)</span></h3>
+                    <div id="real-time-logs" class="logs-view">
+                        <div class="log-entry info">Activity logs will appear here...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="control-container">
+            <button id="startAgent" class="action-button">Start Agent</button>
+            <button id="stopAgent" class="action-button">Stop Agent</button>
+            <!-- View Stats and Clear History buttons will be added by JS -->
+        </div>
+        
+        <!-- Real-time Console Logging Display -->
+        <div id="console-container" class="console-container">
+            <div class="console-header">
+                <h4>Agent Console</h4>
+                <div class="console-controls">
+                    <button id="clearConsole" class="console-button" title="Clear console">Clear</button>
+                    <button id="toggleConsole" class="console-button" title="Toggle auto-scroll">Auto-scroll</button>
+                </div>
+            </div>
+            <div id="console-output" class="console-output">
+                <!-- Console logs will appear here -->
+            </div>
+        </div>
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html>

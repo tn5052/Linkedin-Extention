@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LinkedIn AI Commenter - Logs</title>
+  <style>
+    body {
+      width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+    }
+    
+    h1 {
+      color: #0077B5;
+      margin-bottom: 20px;
+    }
+    
+    .controls {
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .log-container {
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      height: 500px;
+      overflow-y: auto;
+      padding: 10px;
+    }
+    
+    .log-entry {
+      padding: 8px;
+      border-bottom: 1px solid #eee;
+      font-family: monospace;
+    }
+    
+    .info {
+      color: #0077B5;
+    }
+    
+    .warn {
+      color: #FF9800;
+    }
+    
+    .error {
+      color: #F44336;
+    }
+    
+    .debug {
+      color: #4CAF50;
+    }
+    
+    .timestamp {
+      color: #888;
+      margin-right: 10px;
+    }
+    
+    button {
+      background-color: #0077B5;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    button:hover {
+      background-color: #005582;
+    }
+    
+    .stats {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-around;
+      background-color: white;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .stat-box {
+      text-align: center;
+    }
+    
+    .stat-value {
+      font-size: 24px;
+      font-weight: bold;
+      color: #0077B5;
+    }
+  </style>
+</head>
+<body>
+  <h1>LinkedIn AI Commenter - Activity Logs</h1>
+  
+  <div class="controls">
+    <button id="refresh">Refresh Logs</button>
+    <button id="clear">Clear Logs</button>
+    <button id="export">Export Logs</button>
+  </div>
+  
+  <div class="stats">
+    <div class="stat-box">
+      <div class="stat-value" id="processed">0</div>
+      <div>Profiles Processed</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-value" id="commented">0</div>
+      <div>Comments Posted</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-value" id="skipped">0</div>
+      <div>Profiles Skipped</div>
+    </div>
+  </div>
+  
+  <div class="log-container" id="logs">
+    <div class="log-entry info">Loading logs...</div>
+  </div>
+
+  <script src="logs.js"></script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn AI Commenter - Prompt Management</title>
+    <!-- Updated Google Fonts with better selection -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="prompts-styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="header-content">
+                <h1>LinkedIn AI Commenter</h1>
+                <p class="header-subtitle">Prompt Management</p>
+            </div>
+            <div class="header-actions">
+                <button id="saveAllPrompts" class="primary-button">Save Changes</button>
+                <button id="resetAllPrompts" class="secondary-button">Reset to Defaults</button>
+                <button id="backToPopup" class="text-button">Return to Dashboard</button>
+            </div>
+        </header>
+
+        <div class="prompt-intro">
+            <div class="intro-container">
+                <h2>Prompt Engineering Guide</h2>
+                <p class="intro-description">Craft effective prompts for better AI-generated comments on LinkedIn. Use variables to incorporate dynamic content.</p>
+                
+                <div class="variables-legend">
+                    <h3>Available Variables</h3>
+                    <div class="variables-list">
+                        <div class="variable-tag var-text">${postText}</div>
+                        <div class="variable-tag var-image">${imageContext}</div>
+                        <div class="variable-tag var-business">${businessContext}</div>
+                    </div>
+                    <p class="variables-hint">These variables will be automatically replaced with post content, image descriptions, and your business information.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="prompt-sections">
+            <!-- Business Context Section -->
+            <section class="prompt-card">
+                <div class="card-header">
+                    <h2>Business Context</h2>
+                    <span class="model-badge">Profile Info</span>
+                </div>
+                <p class="card-description">
+                    Provide information about your business that helps the AI generate relevant and personalized comments. 
+                    This context will be included in all comment prompts using the <code>${businessContext}</code> variable.
+                </p>
+                <div class="context-guidelines">
+                    <h4>Best Practices for Business Context:</h4>
+                    <ul>
+                        <li><strong>Be specific</strong> about your industry, products/services, and target audience</li>
+                        <li><strong>Include your expertise</strong> and areas of professional interest</li>
+                        <li><strong>Mention tone preferences</strong> (professional, friendly, technical, etc.)</li>
+                        <li><strong>Specify engagement goals</strong> (e.g., building relationships, showcasing expertise)</li>
+                        <li><strong>Avoid overly promotional language</strong> that could make comments seem like spam</li>
+                    </ul>
+                    <div class="example-container">
+                        <h5>Example Business Context:</h5>
+                        <div class="example-content">
+                            "I'm a cybersecurity consultant specializing in data protection for financial institutions. My expertise includes cloud security architecture, compliance (GDPR, PCI-DSS), and security awareness training. I aim to build relationships with financial technology professionals by sharing valuable insights rather than selling services directly. My tone should be professional but approachable, technically accurate but not overly complex."
+                        </div>
+                    </div>
+                </div>
+                <div class="editor-container">
+                    <textarea id="businessContext" class="prompt-editor" spellcheck="false" placeholder="Describe your business, expertise, tone preferences, and engagement goals..."></textarea>
+                </div>
+                <div class="card-footer">
+                    <div class="footer-stats">
+                        <span class="stat-label">Characters:</span>
+                        <span id="businessContextCount" class="stat-value">0</span>
+                    </div>
+                    <button id="resetBusinessContext" class="reset-button" data-prompt-type="businessContext">Reset to Default</button>
+                </div>
+            </section>
+
+            <section class="prompt-card">
+                <div class="card-header">
+                    <h2>Vision Analysis Prompt</h2>
+                    <span class="model-badge">Mistral Vision</span>
+                </div>
+                <p class="card-description">
+                    This prompt instructs the AI how to analyze and describe images in LinkedIn posts. Focus on professional visual elements that provide context for engagement.
+                </p>
+                <div class="prompt-guidelines">
+                    <h4>Tips for Vision Analysis Prompts:</h4>
+                    <ul>
+                        <li>Request <strong>objective descriptions</strong> of visual elements relevant to professional networking</li>
+                        <li>Ask the AI to identify <strong>business-related context</strong> in images (charts, presentations, events)</li>
+                        <li>Encourage <strong>concise descriptions</strong> that highlight key points rather than exhaustive details</li>
+                        <li>Focus on <strong>professional relevance</strong> rather than aesthetic qualities</li>
+                    </ul>
+                </div>
+                <div class="editor-container">
+                    <textarea id="visionPrompt" class="prompt-editor" spellcheck="false"></textarea>
+                </div>
+                <div class="card-footer">
+                    <button id="resetVisionPrompt" class="reset-button" data-prompt-type="vision">Reset to Default</button>
+                </div>
+            </section>
+
+            <section class="prompt-card">
+                <div class="card-header">
+                    <h2>Comment Generation Prompt</h2>
+                    <span class="model-badge">Gemini</span>
+                </div>
+                <p class="card-description">
+                    This prompt guides the AI in generating relevant, engaging comments for LinkedIn posts based on the post content and your business context.
+                </p>
+                <div class="prompt-guidelines">
+                    <h4>Tips for Comment Generation Prompts:</h4>
+                    <ul>
+                        <li><strong>Structure your prompt</strong> with clear sections (role, context, instructions)</li>
+                        <li>Provide <strong>explicit instructions</strong> on tone, length, and style</li>
+                        <li>Include <strong>negative guidance</strong> (what to avoid) to prevent generic comments</li>
+                        <li>Request <strong>specific outputs</strong> like questions, insights, or connections to the topic</li>
+                        <li>Specify the <strong>format</strong> for the AI's response to ensure consistency</li>
+                    </ul>
+                </div>
+                <div class="editor-container">
+                    <textarea id="commentPrompt" class="prompt-editor" spellcheck="false"></textarea>
+                </div>
+                <div class="card-footer">
+                    <div class="footer-stats">
+                        <span class="stat-label">Variables:</span>
+                        <span id="varCount" class="stat-value">0</span>
+                    </div>
+                    <button id="resetCommentPrompt" class="reset-button" data-prompt-type="comment">Reset to Default</button>
+                </div>
+            </section>
+        </div>
+
+        <footer class="app-footer">
+            <p>LinkedIn AI Commenter &copy; 2024</p>
+        </footer>
+        
+        <div id="notificationContainer" class="notification-container"></div>
+    </div>
+    <script src="prompts.js"></script>
+</body>
+</html>
